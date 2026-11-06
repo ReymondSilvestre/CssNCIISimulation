@@ -316,11 +316,11 @@ canvas.addEventListener('wheel',e=>{e.preventDefault();R=Math.max(12,Math.min(80
 const cur=$('cursor'),vid=$('vid');
 let handOn=false,hands=null,stream=null,pinch=false,hx=0,hy=0,uiClick=false;
 async function startHand(){
-  if(!window.Hands)return toast('Hand tracking library did not load. Check your internet connection.');
+  if(!window.Hands)return toast('Hand tracking library did not load. Reload the page once while online.');
   try{stream=await navigator.mediaDevices.getUserMedia({video:{width:640,height:480}})}
   catch(e){return toast('Camera blocked. Allow camera access and try again.')}
   vid.srcObject=stream;await vid.play();
-  hands=new Hands({locateFile:f=>'https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/'+f});
+  hands=new Hands({locateFile:f=>'lib/mediapipe/'+f});
   hands.setOptions({maxNumHands:1,modelComplexity:0,minDetectionConfidence:.6,minTrackingConfidence:.5});
   hands.onResults(onHand);
   handOn=true;cur.style.display='block';$('cam').classList.add('on');
@@ -553,7 +553,7 @@ function finish(){
     ...[2,3,4].map(u=>['Unit '+u+': '+UN[u].t,`${up(u).toFixed(1)} / ${um(u)} `+(up(u)>=um(u)*PASS()?'(Competent)':'(Not yet competent)')]),['TOTAL',`${total.toFixed(1)} / ${mx} (${pct}%)`],
     ['Remark',pct>=CFG.pass?'Passed':'Needs more practice (passing mark '+CFG.pass+'%)']];
   saveResult({id:S.sid,name:S.name,age:S.age,date:S.date,pre:S.pre,preMax:QS.length,u1:+(prac+bp).toFixed(1),u1max:15,u2:+up(2).toFixed(1),u2max:um(2),u3:+up(3).toFixed(1),u3max:um(3),u4:+up(4).toFixed(1),u4max:um(4),total:+total.toFixed(1),max:mx,pct,remark:pct>=CFG.pass?'Passed':'Needs practice',mistakes:errors,mins});
-  show(`<h2>Activity result</h2><p class="big">${pct}%</p><table>${rows.map(r=>`<tr><td>${r[0]}</td><td>${esc(r[1])}</td></tr>`).join('')}</table>
+  show(`${hdr()}<h2>Activity result</h2><p class="big">${pct}%</p><table>${rows.map(r=>`<tr><td>${r[0]}</td><td>${esc(r[1])}</td></tr>`).join('')}</table>
   <div class="btns"><button id="sv">Save result</button><button id="pr">Print</button><button id="kp">Keep practicing</button><button id="nw">New student</button></div>`);
   $('sv').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([rows.map(r=>r[0]+': '+r[1]).join('\n')],{type:'text/plain'}));a.download='CSS-NC2-'+S.name.replace(/\W+/g,'_')+'.txt';a.click()};
   $('pr').onclick=()=>window.print();

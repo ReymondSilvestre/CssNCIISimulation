@@ -5,11 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Computer Unit Lab – CSS NC II</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10253a">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <canvas id="c"></canvas>
 <div id="side" class="panel">
+  <img class="slogo" src="logo.png" alt="SylverVibeCode logo">
   <h1>Computer Unit Lab</h1>
   <div class="sub">Computer Systems Servicing NC II</div>
   <div class="stat" id="trn"></div>
@@ -53,9 +59,10 @@
 
 <script src="lib/three.min.js"></script>
 <script>window.THREE||document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>')</script>
-<script async src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js" crossorigin="anonymous"></script>
+<script async src="lib/mediapipe/hands.js"></script>
 <script src="config.js"></script>
 <script src="app.js"></script>
 <script src="trainer.js"></script>
+<script>if("serviceWorker" in navigator&&location.protocol.startsWith("http"))addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script>
 </body>
 </html>

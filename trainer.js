@@ -24,7 +24,7 @@ function setNet() {
     : AC.SHEET_URL ? 'Offline: results stay in this session until you reload.'
     : 'Offline mode: data is lost when you reload.';
 }
-const hdr = () => `<div class="who"><b>${esc(CFG.trainer)}</b><span>${esc(CFG.role)}${CFG.center ? '<br>' + esc(CFG.center) : ''}</span></div>`;
+const hdr = () => `<div class="brand"><img src="logo.png" alt="SylverVibeCode logo"><div class="who"><b>${esc(CFG.trainer)}</b><span>${esc(CFG.role)}${CFG.center ? '<br>' + esc(CFG.center) : ''}</span></div></div>`;
 function applyCfg() {
   QS = CFG.questions;
   document.title = CFG.title + ' – ' + CFG.course;

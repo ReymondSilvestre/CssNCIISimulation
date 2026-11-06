@@ -144,3 +144,10 @@ button{touch-action:manipulation}
   #awin{width:min(380px,50%)}
 }
 @media(max-width:340px){#zoom button.w{display:none}}
+
+/* ===== logo ===== */
+.brand{display:flex;align-items:center;gap:12px;margin:0 0 14px}
+.brand .who{margin:0}
+.brand img{width:76px;height:76px;object-fit:contain;flex:none}
+.slogo{display:block;width:84px;height:84px;object-fit:contain;background:#f4f7f8;border-radius:10px;padding:3px;margin:0 0 8px}
+@media(max-width:700px){.brand img{width:60px;height:60px}}

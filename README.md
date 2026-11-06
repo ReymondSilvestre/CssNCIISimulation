@@ -23,3 +23,11 @@ If you change `Code.gs` later, use Deploy > Manage deployments > Edit > New vers
 Press Trainer settings (registration screen or side menu). Default offline PIN is `1234` (`DEFAULT_PIN` in `config.js`).
 When online, the PIN is checked by `TRAINER_PIN` in `Code.gs`.
 Tabs: Details (lab title, trainer name, passing mark), Questions (pre-test), Results (table and CSV download).
+
+## Offline after uploading to GitHub Pages or Vercel
+The site saves itself on the device (service worker). Open the site **once with internet**, wait a few seconds, then it opens offline.
+On phones and Chrome/Edge you can also choose Install app / Add to Home screen.
+- Works only over https (GitHub Pages and Vercel both are). Opening `index.html` directly from a folder also works offline.
+- When you change any file and upload again, change `VERSION` in `sw.js` (for example `css-lab-v2`) so devices download the update.
+- Hand tracking files are bundled in `lib/mediapipe`. Upload that folder too.
+- Offline results stay in memory and are lost on reload. Download the CSV before closing.
