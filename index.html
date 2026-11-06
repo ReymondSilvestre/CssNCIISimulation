@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Computer Unit Lab – CSS NC II</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="side" class="panel">
+  <h1>Computer Unit Lab</h1>
+  <div class="sub">Computer Systems Servicing NC II</div>
+  <div class="stat" id="trn"></div>
+  <div class="stat" id="stu"></div>
+  <div class="stat" id="net"></div>
+  <div class="row" id="units"><button data-u="1" class="on">1 Install</button><button data-u="2">2 Networks</button><button data-u="3">3 Servers</button><button data-u="4">4 Repair</button></div>
+  <div class="row" id="modes">
+    <button data-m="identify" class="on">Identify</button>
+    <button data-m="dis">Disassemble</button>
+    <button data-m="asm">Assemble</button>
+  </div>
+  <div class="row">
+    <button id="esd" class="warn">ESD strap: off</button>
+  </div>
+  <div class="row">
+    <button id="autoD">Auto take apart</button>
+    <button id="autoA">Auto build</button>
+  </div>
+  <div class="row"><button id="quiz">Start quiz (5 questions)</button></div>
+  <div class="row"><button id="pwr">Power on the PC</button><button id="del" disabled>Press DEL</button></div>
+  <div class="row"><button id="fin" class="warn">Finish and see score</button></div>
+  <ul id="list"></ul>
+  <div class="stat" id="stat"></div>
+  <div class="row"><button id="trbtn">Trainer settings</button></div>
+</div>
+<button id="menu" aria-label="Open menu">Menu</button>
+<div id="zoom" class="panel"><button id="zi" aria-label="Zoom in">+</button><button id="zo" aria-label="Zoom out">−</button><button id="rv" class="w">Rear view</button></div>
+<div id="info" class="panel"><h2>Hover or click a part</h2><p>Identify mode: click parts to learn what they do. Remove the side panel to see inside.</p></div>
+<div id="cam" class="panel">
+  <button id="hand">Hand control: off</button>
+  <video id="vid" playsinline muted></video>
+  <small id="hs">Point to move the cursor. Pinch to grab a part, move your hand, open your fingers to drop it.</small>
+</div>
+<div id="act"><div id="awin"><div id="atop"><button data-u="1">1 Install and configure computer systems</button><button data-u="2">2 Set up computer networks</button><button data-u="3">3 Set up computer servers</button><button data-u="4">4 Maintain and repair systems and networks</button><button id="afin">Finish and see score</button></div><div id="abody"><div id="alist"></div><div id="amain"></div></div></div></div>
+<div id="bios"><div id="bwin"></div></div>
+<div id="ov"></div>
+<div id="tr"></div>
+<div id="toast"></div>
+<div id="cursor"></div>
+
+
+<script src="lib/three.min.js"></script>
+<script>window.THREE||document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>')</script>
+<script async src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js" crossorigin="anonymous"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script src="trainer.js"></script>
+</body>
+</html>
