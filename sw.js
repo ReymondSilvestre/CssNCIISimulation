@@ -1,5 +1,5 @@
 /* Offline support. Bump VERSION when you change files so devices refresh. */
-const VERSION='css-lab-v6',CORE=["./", "index.html", "styles.css", "app.js", "trainer.js", "config.js", "manifest.json", "icon-192.png", "icon-512.png", "logo.png", "favicon.ico", "favicon.png", "apple-touch-icon.png", "lib/three.min.js"],HEAVY=[
+const VERSION='css-lab-v7',CORE=["./", "index.html", "styles.css", "app.js", "trainer.js", "config.js", "manifest.json", "icon-192.png", "icon-512.png", "logo.png", "favicon.ico", "favicon.png", "apple-touch-icon.png", "lib/three.min.js"],HEAVY=[
 "lib/mediapipe/hand_landmark_lite.tflite",
 "lib/mediapipe/hands.binarypb",
 "lib/mediapipe/hands.js",

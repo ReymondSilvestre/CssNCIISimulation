@@ -667,3 +667,18 @@ $('menu').onclick=()=>mob()?setMenu(!document.body.classList.contains('menu')):s
 $('hide').onclick=()=>mob()?setMenu(false):setSide(true);
 $('side').addEventListener('click',e=>{if(mob()&&e.target.closest('button')&&e.target.id!=='esd'&&!e.target.closest('.dh'))setMenu(false)});
 document.querySelectorAll('#side .dh').forEach(b=>b.onclick=()=>{const s=b.parentNode.classList.toggle('shut');b.setAttribute('aria-expanded',String(!s))});
+
+/* ---------- full screen button + keep the toolbar off the question screens ---------- */
+{
+  const d=document,de=d.documentElement,isFs=()=>!!(d.fullscreenElement||d.webkitFullscreenElement);
+  $('fs').onclick=()=>{
+    if(isFs()){(d.exitFullscreen||d.webkitExitFullscreen).call(d);return}
+    const r=de.requestFullscreen||de.webkitRequestFullscreen;
+    if(!r){toast('Full screen is not supported here. On iPhone: Share, then Add to Home Screen.');return}
+    const p=r.call(de);if(p&&p.catch)p.catch(()=>toast('Full screen was blocked by the browser.'))
+  };
+  const fsUi=()=>{$('fs').classList.toggle('on',isFs());$('fs').setAttribute('aria-label',isFs()?'Exit full screen':'Full screen')};
+  d.addEventListener('fullscreenchange',fsUi);d.addEventListener('webkitfullscreenchange',fsUi);
+  const ovUi=()=>d.body.classList.toggle('ovon',$('ov').style.display==='flex'||$('bios').style.display==='flex');
+  const mo=new MutationObserver(ovUi);[$('ov'),$('bios')].forEach(n=>mo.observe(n,{attributes:true,attributeFilter:['style']}));ovUi();
+}

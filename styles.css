@@ -183,3 +183,20 @@ button{touch-action:manipulation}
 /* trainer settings = person icon beside Rear view; stays above the student information screen */
 #zoom{z-index:9}
 #trbtn{display:flex;align-items:center;justify-content:center;padding:0}
+
+/* ===== phones: centered cards, toolbar never covers the questions, full screen button ===== */
+#ov,#bios{align-items:flex-start;justify-content:center}
+#ov .card,#bwin{margin:auto}
+@media(max-width:900px){
+  #ov,#bios{padding-top:calc(env(safe-area-inset-top,0px) + 62px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 10px)}
+  body.menu #zoom{display:none}
+}
+body.ovon #zi,body.ovon #zo,body.ovon #rv{display:none}
+#fs,#trbtn{display:flex;align-items:center;justify-content:center;padding:0}
+#fs.on{background:var(--sig);color:var(--navy)}
+@media(display-mode:standalone),(display-mode:fullscreen){#fs{display:none}}
+@media(max-width:480px){
+  #zoom{gap:4px;padding:4px}
+  #zoom button{width:38px}
+  #zoom button.w{width:auto;font-size:12px;padding:6px 8px}
+}
