@@ -38,10 +38,13 @@ The side menu has two divisions: **1 Lab menu** (student, units, finish) and **2
 ## Editing questions and activities (Trainer settings)
 Tabs: Details, Pre-test, Units 2-4, Results.
 In **Units 2-4** the trainer can edit, add and delete questions and steps for the multiple-choice, ordering and select-all activities, and add new activities. The three interactive simulations (network devices, IP settings, folder permissions) and the RJ45 wire order can be renamed but their content is fixed. Unit 1 is the hands-on work station.
-Changes save into the `Config` tab of the Google Sheet (limit about 45,000 characters) and students get them on their next page load. After uploading these files, `VERSION` in `sw.js` is already bumped to `css-lab-v7`.
+Changes save into the `Config` tab of the Google Sheet (limit about 45,000 characters) and students get them on their next page load. After uploading these files, `VERSION` in `sw.js` is already bumped to `css-lab-v8`.
 
 ## Trainer settings
 There is no Trainer settings button for students. The trainer opens it with the small **person icon** next to the **Rear view** button (top right), then enters the PIN.
 
 ## Full screen
 The square-corner icon in the top-right toolbar switches full screen on or off (Android, tablets, computers). iPhone Safari does not allow it: use Share > Add to Home Screen, then open the app from the home screen. The button hides itself when the app already runs full screen.
+
+## Part description and hand control
+The part description panel is now at the top (under the Menu button on phones). The hand control is a round hand icon below the top-right toolbar: tap it to turn hand tracking on (it turns yellow) and tap again to turn it off. The camera preview and hints show in the bottom-right corner only while it is on.

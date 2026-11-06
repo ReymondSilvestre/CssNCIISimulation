@@ -314,6 +314,7 @@ canvas.addEventListener('wheel',e=>{e.preventDefault();R=Math.max(12,Math.min(80
 
 /* ---------- hand tracking ---------- */
 const cur=$('cursor'),vid=$('vid');
+const handUi=on=>{const b=$('hand');b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));b.title='Hand control: '+(on?'on':'off');b.setAttribute('aria-label',b.title)};
 let handOn=false,hands=null,stream=null,pinch=false,hx=0,hy=0,uiClick=false;
 async function startHand(){
   if(!window.Hands)return toast('Hand tracking library did not load. Reload the page once while online.');
@@ -324,13 +325,13 @@ async function startHand(){
   hands.setOptions({maxNumHands:1,modelComplexity:0,minDetectionConfidence:.6,minTrackingConfidence:.5});
   hands.onResults(onHand);
   handOn=true;cur.style.display='block';$('cam').classList.add('on');
-  $('hand').textContent='Hand control: on';$('hand').classList.add('on');
+  handUi(true);toast('Hand control on: point to move, pinch to click or grab.');
   $('hs').textContent='Looking for your hand…';handLoop();
 }
 function stopHand(){
   handOn=false;if(pinch)release();cur.style.display='none';$('cam').classList.remove('on');
   if(stream)stream.getTracks().forEach(t=>t.stop());
-  $('hand').textContent='Hand control: off';$('hand').classList.remove('on');
+  handUi(false);
   $('hs').textContent='Point to move the cursor. Pinch thumb and index finger to click. Pinch to grab a part, move your hand, open your fingers to drop it.';
 }
 async function handLoop(){
@@ -680,5 +681,6 @@ document.querySelectorAll('#side .dh').forEach(b=>b.onclick=()=>{const s=b.paren
   const fsUi=()=>{$('fs').classList.toggle('on',isFs());$('fs').setAttribute('aria-label',isFs()?'Exit full screen':'Full screen')};
   d.addEventListener('fullscreenchange',fsUi);d.addEventListener('webkitfullscreenchange',fsUi);
   const ovUi=()=>d.body.classList.toggle('ovon',$('ov').style.display==='flex'||$('bios').style.display==='flex');
-  const mo=new MutationObserver(ovUi);[$('ov'),$('bios')].forEach(n=>mo.observe(n,{attributes:true,attributeFilter:['style']}));ovUi();
+  const actUi=()=>d.body.classList.toggle('actopen',$('act').style.display==='block');
+  const mo=new MutationObserver(()=>{ovUi();actUi()});[$('ov'),$('bios'),$('act')].forEach(n=>mo.observe(n,{attributes:true,attributeFilter:['style']}));ovUi();actUi();
 }

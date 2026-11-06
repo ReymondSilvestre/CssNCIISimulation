@@ -62,9 +62,11 @@
 <div id="zoom" class="panel"><button id="zi" aria-label="Zoom in">+</button><button id="zo" aria-label="Zoom out">−</button><button id="rv" class="w">Rear view</button><button id="fs" aria-label="Full screen" title="Full screen"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button id="trbtn" aria-label="Trainer settings"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
 <div id="info" class="panel"><h2>Hover or click a part</h2><p>Identify mode: click parts to learn what they do. Remove the side panel to see inside.</p></div>
 <div id="cam" class="panel">
-  <button id="hand">Hand control: off</button>
-  <video id="vid" playsinline muted></video>
-  <small id="hs">Point to move the cursor. Pinch to grab a part, move your hand, open your fingers to drop it.</small>
+  <button id="hand" type="button" aria-label="Hand control: off" aria-pressed="false" title="Hand control: off"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0v1M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-5.9-2.4L3.4 16a2 2 0 0 1 3.2-2.4L8 15"/></svg></button>
+  <div id="camv">
+    <video id="vid" playsinline muted></video>
+    <small id="hs">Point to move the cursor. Pinch to grab a part, move your hand, open your fingers to drop.</small>
+  </div>
 </div>
 <div id="act"><div id="awin"><div id="atop"><button data-u="1">1 Install and configure computer systems</button><button data-u="2">2 Set up computer networks</button><button data-u="3">3 Set up computer servers</button><button data-u="4">4 Maintain and repair systems and networks</button><button id="afin">Finish and see score</button></div><div id="abody"><div id="alist"></div><div id="amain"></div></div></div></div>
 <div id="bios"><div id="bwin"></div></div>

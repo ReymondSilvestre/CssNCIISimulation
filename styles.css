@@ -200,3 +200,23 @@ body.ovon #zi,body.ovon #zo,body.ovon #rv{display:none}
   #zoom button{width:38px}
   #zoom button.w{width:auto;font-size:12px;padding:6px 8px}
 }
+
+/* ===== description panel at the top, hand control as an icon ===== */
+#info{top:12px;bottom:auto;left:264px;right:360px;transform:none;width:auto;min-height:0;max-height:34dvh;overflow:auto}
+body.actopen #info{display:none}
+@media(min-width:901px){body.sidehide #info{left:84px}}
+@media(max-width:900px){
+  #info{top:calc(env(safe-area-inset-top,0px) + 62px);left:8px;right:64px;max-height:24dvh}
+}
+@media(max-width:700px){
+  #awin{left:6px;right:6px;width:auto;top:calc(env(safe-area-inset-top,0px) + 58px);bottom:auto;height:46dvh;border-radius:12px}
+}
+#cam{right:12px;top:72px;bottom:auto;width:auto;background:none;border:0;padding:0}
+@media(max-width:900px){#cam{right:8px;top:calc(env(safe-area-inset-top,0px) + 66px)}}
+body.menu #cam,body.ovon #cam{display:none}
+#hand{flex:none;width:44px;height:44px;min-width:0;padding:0;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(16,37,58,.94)}
+#hand.on{background:var(--sig);color:var(--navy);border-color:var(--sig)}
+#camv{display:none;position:fixed;right:8px;bottom:8px;width:150px;background:rgba(16,37,58,.94);border:1px solid var(--line);border-radius:10px;padding:6px;z-index:5}
+#cam.on #camv{display:block}
+#camv video{display:block;width:100%;border-radius:6px;transform:scaleX(-1);background:#000}
+#camv small{display:block;font-size:11px;opacity:.9;margin-top:5px;line-height:1.3}
