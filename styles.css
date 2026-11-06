@@ -151,3 +151,31 @@ button{touch-action:manipulation}
 .brand img{width:76px;height:76px;object-fit:contain;flex:none}
 .slogo{display:block;width:84px;height:84px;object-fit:contain;background:#f4f7f8;border-radius:10px;padding:3px;margin:0 0 8px}
 @media(max-width:700px){.brand img{width:60px;height:60px}}
+
+/* ===== side menu: two divisions + hide icon ===== */
+.shead{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+#hide{flex:none;width:38px;height:38px;min-width:0;padding:0;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.dv{border:1px solid var(--line);border-radius:9px;padding:6px 10px 8px;margin:10px 0;background:rgba(255,255,255,.04)}
+.dh{display:flex;width:100%;flex:none;justify-content:space-between;align-items:center;background:none;border:0;border-radius:6px;padding:4px 0;color:var(--sig);font:600 16px 'Barlow Condensed',sans-serif;letter-spacing:.8px;text-transform:uppercase;text-align:left}
+.dh:hover{background:none;filter:brightness(1.15)}
+.dh i{width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .15s;margin-right:4px}
+.dv.shut .dh i{transform:rotate(-45deg)}
+.dv.shut .db{display:none}
+#dv2 .db .row:first-child{margin-top:4px}
+@media(min-width:901px){
+  #side{transition:transform .2s,visibility 0s}
+  body.sidehide #side{transform:translateX(-110%);visibility:hidden;pointer-events:none;transition:transform .2s,visibility 0s .2s}
+  body.sidehide #menu{display:block}
+}
+@media(min-width:901px) and (max-width:1200px){body.sidehide #info{left:12px}}
+@media(prefers-reduced-motion:reduce){#side,.dh i{transition:none!important}}
+
+/* ===== trainer: unit activity editor ===== */
+#tr h3{font:600 20px 'Barlow Condensed',sans-serif;margin:8px 0 8px}
+#tr .acard{border:2px solid #9fb3c4;border-radius:10px;padding:10px 12px 12px;margin:0 0 14px;background:#eef3f6}
+#tr .acard .qcard{background:#fff}
+#tr .atype{font-size:12px;opacity:.7;text-transform:uppercase;letter-spacing:.6px;margin:0 0 2px}
+#tr .qopt input[type=checkbox]{width:22px;height:22px;flex:none;margin:0;accent-color:var(--navy)}
+#tr .qopt span.n{flex:none;width:22px;font-weight:600}
+#tr button.mini{min-width:0;padding:8px 11px;flex:none}
+#tr .note{background:#fff7e0;border:1px solid #f1d98a;border-radius:8px;padding:8px 10px;font-size:13px;margin:8px 0}

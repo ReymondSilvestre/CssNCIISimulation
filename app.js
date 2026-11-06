@@ -659,7 +659,11 @@ $('stu').insertAdjacentHTML('afterend','<div class="stat" id="comp"></div>');
 function updComp(){$('comp').innerHTML=[1,2,3,4].map(u=>`<b>Unit ${u}</b>: ${sco(u).toFixed(1)}/${mxs(u)} ${u>1&&!pass(u-1)?'(locked)':pass(u)?'(competent)':'(not yet)'}`).join('<br>');document.querySelectorAll('#units [data-u]').forEach(b=>{const u=+b.dataset.u;b.style.opacity=u>1&&!pass(u-1)?.5:1})}
 setInterval(updComp,800);updComp();
 
-/* ---------- small-screen menu drawer ---------- */
+/* ---------- side menu: hide icon (desktop) and drawer (small screens) ---------- */
+const mob=()=>innerWidth<=900;
 const setMenu=o=>{document.body.classList.toggle('menu',o);$('menu').textContent=o?'Close':'Menu'};
-$('menu').onclick=()=>setMenu(!document.body.classList.contains('menu'));
-$('side').addEventListener('click',e=>{if(innerWidth<=900&&e.target.closest('button')&&e.target.id!=='esd')setMenu(false)});
+const setSide=h=>{document.body.classList.toggle('sidehide',h);$('menu').textContent='Menu'};
+$('menu').onclick=()=>mob()?setMenu(!document.body.classList.contains('menu')):setSide(false);
+$('hide').onclick=()=>mob()?setMenu(false):setSide(true);
+$('side').addEventListener('click',e=>{if(mob()&&e.target.closest('button')&&e.target.id!=='esd'&&!e.target.closest('.dh'))setMenu(false)});
+document.querySelectorAll('#side .dh').forEach(b=>b.onclick=()=>{const s=b.parentNode.classList.toggle('shut');b.setAttribute('aria-expanded',String(!s))});

@@ -15,33 +15,48 @@
 <body>
 <canvas id="c"></canvas>
 <div id="side" class="panel">
-  <img class="slogo" src="logo.png" alt="SylverVibeCode logo">
+  <div class="shead">
+    <img class="slogo" src="logo.png" alt="SylverVibeCode logo">
+    <button id="hide" type="button" aria-label="Hide side menu" title="Hide menu"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
   <h1>Computer Unit Lab</h1>
   <div class="sub">Computer Systems Servicing NC II</div>
-  <div class="stat" id="trn"></div>
-  <div class="stat" id="stu"></div>
-  <div class="stat" id="net"></div>
-  <div class="row" id="units"><button data-u="1" class="on">1 Install</button><button data-u="2">2 Networks</button><button data-u="3">3 Servers</button><button data-u="4">4 Repair</button></div>
-  <div class="row" id="modes">
-    <button data-m="identify" class="on">Identify</button>
-    <button data-m="dis">Disassemble</button>
-    <button data-m="asm">Assemble</button>
-  </div>
-  <div class="row">
-    <button id="esd" class="warn">ESD strap: off</button>
-  </div>
-  <div class="row">
-    <button id="autoD">Auto take apart</button>
-    <button id="autoA">Auto build</button>
-  </div>
-  <div class="row"><button id="quiz">Start quiz (5 questions)</button></div>
-  <div class="row"><button id="pwr">Power on the PC</button><button id="del" disabled>Press DEL</button></div>
-  <div class="row"><button id="fin" class="warn">Finish and see score</button></div>
-  <ul id="list"></ul>
-  <div class="stat" id="stat"></div>
-  <div class="row"><button id="trbtn">Trainer settings</button></div>
+
+  <section class="dv" id="dv1">
+    <button type="button" class="dh" aria-expanded="true"><span>1 &middot; Lab menu</span><i></i></button>
+    <div class="db">
+      <div class="stat" id="trn"></div>
+      <div class="stat" id="stu"></div>
+      <div class="stat" id="net"></div>
+      <div class="row" id="units"><button data-u="1" class="on">1 Install</button><button data-u="2">2 Networks</button><button data-u="3">3 Servers</button><button data-u="4">4 Repair</button></div>
+      <div class="row"><button id="fin" class="warn">Finish and see score</button></div>
+      <div class="row"><button id="trbtn">Trainer settings</button></div>
+    </div>
+  </section>
+
+  <section class="dv" id="dv2">
+    <button type="button" class="dh" aria-expanded="true"><span>2 &middot; Work station</span><i></i></button>
+    <div class="db">
+      <div class="row" id="modes">
+        <button data-m="identify" class="on">Identify</button>
+        <button data-m="dis">Disassemble</button>
+        <button data-m="asm">Assemble</button>
+      </div>
+      <div class="row">
+        <button id="esd" class="warn">ESD strap: off</button>
+      </div>
+      <div class="row">
+        <button id="autoD">Auto take apart</button>
+        <button id="autoA">Auto build</button>
+      </div>
+      <div class="row"><button id="quiz">Start quiz (5 questions)</button></div>
+      <div class="row"><button id="pwr">Power on the PC</button><button id="del" disabled>Press DEL</button></div>
+      <ul id="list"></ul>
+      <div class="stat" id="stat"></div>
+    </div>
+  </section>
 </div>
-<button id="menu" aria-label="Open menu">Menu</button>
+<button id="menu" aria-label="Show side menu">Menu</button>
 <div id="zoom" class="panel"><button id="zi" aria-label="Zoom in">+</button><button id="zo" aria-label="Zoom out">−</button><button id="rv" class="w">Rear view</button></div>
 <div id="info" class="panel"><h2>Hover or click a part</h2><p>Identify mode: click parts to learn what they do. Remove the side panel to see inside.</p></div>
 <div id="cam" class="panel">

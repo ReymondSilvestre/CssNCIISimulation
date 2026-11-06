@@ -31,3 +31,11 @@ On phones and Chrome/Edge you can also choose Install app / Add to Home screen.
 - When you change any file and upload again, change `VERSION` in `sw.js` (for example `css-lab-v2`) so devices download the update.
 - Hand tracking files are bundled in `lib/mediapipe`. Upload that folder too.
 - Offline results stay in memory and are lost on reload. Download the CSV before closing.
+
+## Side menu
+The side menu has two divisions: **1 Lab menu** (student, units, finish, trainer settings) and **2 Work station** (modes, ESD strap, auto build, quiz, power, parts list). Click a division title to fold it. The round arrow button at the top hides the whole menu; press **Menu** to bring it back.
+
+## Editing questions and activities (Trainer settings)
+Tabs: Details, Pre-test, Units 2-4, Results.
+In **Units 2-4** the trainer can edit, add and delete questions and steps for the multiple-choice, ordering and select-all activities, and add new activities. The three interactive simulations (network devices, IP settings, folder permissions) and the RJ45 wire order can be renamed but their content is fixed. Unit 1 is the hands-on work station.
+Changes save into the `Config` tab of the Google Sheet (limit about 45,000 characters) and students get them on their next page load. After uploading these files, `VERSION` in `sw.js` is already bumped to `css-lab-v4`.
