@@ -179,3 +179,7 @@ button{touch-action:manipulation}
 #tr .qopt span.n{flex:none;width:22px;font-weight:600}
 #tr button.mini{min-width:0;padding:8px 11px;flex:none}
 #tr .note{background:#fff7e0;border:1px solid #f1d98a;border-radius:8px;padding:8px 10px;font-size:13px;margin:8px 0}
+
+/* trainer settings = person icon beside Rear view; stays above the student information screen */
+#zoom{z-index:9}
+#trbtn{display:flex;align-items:center;justify-content:center;padding:0}

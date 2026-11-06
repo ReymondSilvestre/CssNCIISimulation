@@ -88,15 +88,31 @@ function openTrainer() {
   $('tok').onclick = go; $('tp').onkeydown = e => { if (e.key === 'Enter') go(); }; $('tp').focus();
 }
 function panel() {
-  const T = [['d', 'Details'], ['q', 'Pre-test (' + W.length + ')'], ['u', 'Units 2-4'], ['r', 'Results']];
+  const T = [['d', 'Details'], ['q', 'Pre-test (' + W.length + ')'], ['u', 'Units 2-4'], ['p', 'PIN'], ['r', 'Results']];
   const old = tr.querySelector('.tcard'), sc = old ? old.scrollTop : 0;
   let b = '';
   if (tab === 'd') b = `<div class="grid">${[['title','Lab title'],['course','Course'],['trainer','Trainer name'],['role','Trainer title'],['center','Training center (optional)']].map(([k, l]) => `<label>${l}<input data-k="${k}" value="${esc(D[k])}"></label>`).join('')}<label>Passing mark (%)<input data-k="pass" type="number" min="1" max="100" value="${D.pass}"></label></div>`;
   else if (tab === 'q') b = W.map((q, i) => `<div class="qcard"><label>Question ${i + 1}<input data-q="${i}" value="${esc(q[0])}"></label>${q[1].map((o, j) => `<div class="qopt"><input type="radio" name="r${i}" data-r="${i}.${j}" ${q[2] === j ? 'checked' : ''} aria-label="Correct answer"><input data-o="${i}.${j}" value="${esc(o)}" placeholder="Choice ${j + 1}"></div>`).join('')}<button class="opt" data-del="${i}">Delete question</button></div>`).join('') + '<div class="btns"><button class="opt" data-add="1">Add question</button><button class="opt" data-rst="1">Restore default questions</button></div><p class="meta">Select the round button beside the correct choice.</p>';
   else if (tab === 'u') b = unitsHtml();
+  else if (tab === 'p') b = pinHtml();
   else b = resHtml();
-  tr.innerHTML = `<div class="tcard">${hdr()}<h2>Trainer settings</h2><div class="tabs">${T.map(t => `<button data-t="${t[0]}" class="${tab === t[0] ? 'on' : ''}">${t[1]}</button>`).join('')}</div>${b}<p class="err" id="te"></p><div class="btns">${tab === 'r' ? '<button data-ref="1">Refresh from sheet</button><button data-csv="1">Download CSV</button>' : '<button data-save="1">Save changes</button>'}<button class="opt" data-x="1">Close</button></div></div>`;
+  tr.innerHTML = `<div class="tcard">${hdr()}<h2>Trainer settings</h2><div class="tabs">${T.map(t => `<button data-t="${t[0]}" class="${tab === t[0] ? 'on' : ''}">${t[1]}</button>`).join('')}</div>${b}<p class="err" id="te"></p><div class="btns">${tab === 'r' ? '<button data-ref="1">Refresh from sheet</button><button data-csv="1">Download CSV</button>' : tab === 'p' ? '<button data-pin="1">Change PIN</button>' : '<button data-save="1">Save changes</button>'}<button class="opt" data-x="1">Close</button></div></div>`;
   const nc = tr.querySelector('.tcard'); if (nc) nc.scrollTop = sc;
+}
+const pinHtml = () => `<p class="meta">Change the trainer PIN. It is kept in your Google Sheet's script settings, so students cannot read it.</p><div class="grid"><label>Current PIN<input id="pc" type="password" autocomplete="off"></label><label>New PIN (4 to 20 characters)<input id="pn" type="password" autocomplete="new-password"></label><label>Confirm new PIN<input id="pn2" type="password" autocomplete="new-password"></label></div><p class="note">Forgot the PIN? In the Google Sheet open Extensions &gt; Apps Script, choose <b>resetPin</b> and press Run. The PIN goes back to the one written in Code.gs.</p>`;
+async function changePin() {
+  const e = $('te'), c = $('pc').value, n = $('pn').value, n2 = $('pn2').value;
+  if (c !== tPin) return e.textContent = 'The current PIN is wrong.';
+  if (n.length < 4 || n.length > 20) return e.textContent = 'The new PIN must be 4 to 20 characters.';
+  if (n !== n2) return e.textContent = 'The new PINs do not match.';
+  if (n === c) return e.textContent = 'The new PIN is the same as the current PIN.';
+  e.textContent = 'Saving…';
+  let msg;
+  if (AC.SHEET_URL) {
+    try { await api({ action: 'changePin', pin: tPin, newPin: n }); net.on = true; tPin = n; msg = 'PIN changed. Use the new PIN next time. (The offline PIN in config.js is not changed.)'; }
+    catch (x) { net.on = false; setNet(); return e.textContent = 'PIN not changed: ' + x.message + '. Check the internet connection and try again.'; }
+  } else { AC.DEFAULT_PIN = n; tPin = n; msg = 'PIN changed for this session only. Offline: it returns to the config.js PIN when the page reloads.'; }
+  setNet(); panel(); $('te').textContent = msg;
 }
 const UTN = { choice: 'Multiple choice', order: 'Put in the correct order', multi: 'Select all that apply', topo: 'Network devices (interactive simulation)', ip: 'IP settings (interactive simulation)', perm: 'Folder permissions (interactive simulation)' };
 function actHtml(a, i) {
@@ -149,6 +165,7 @@ tr.addEventListener('click', async e => {
   if (d.di) { const k = d.di.split('.'), a = UW[k[0]][k[1]]; if (a.items.length < 3) return $('te').textContent = 'Keep at least two items.'; a.items.splice(+k[2], 1); return panel(); }
   if (d.mv) { const k = d.mv.split('.'), a = UW[k[0]][k[1]], j = +k[2], n = j + +k[3]; if (n < 0 || n >= a.items.length) return; [a.items[j], a.items[n]] = [a.items[n], a.items[j]]; return panel(); }
   if (d.save) return save();
+  if (d.pin) return changePin();
   if (d.ref) { await loadRes(); return panel(); }
   if (d.csv) return csv();
 });

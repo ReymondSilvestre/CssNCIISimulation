@@ -1,5 +1,9 @@
 /* Google Apps Script: paste this into Extensions > Apps Script of your Google Sheet. */
-const TRAINER_PIN = '1234';   // change this to your own PIN
+const TRAINER_PIN = '1234';   // first PIN. After the trainer changes it in Trainer settings, the new PIN is kept in Script properties.
+const getPin = () => PropertiesService.getScriptProperties().getProperty('TRAINER_PIN') || TRAINER_PIN;
+
+/* FORGOT THE PIN? Select resetPin in the Apps Script editor and press Run. The PIN goes back to TRAINER_PIN above. */
+function resetPin() { PropertiesService.getScriptProperties().deleteProperty('TRAINER_PIN'); }
 const KEYS = ['id','ts','name','age','date','trainer','pre','preMax','u1','u1max','u2','u2max','u3','u3max','u4','u4max','total','max','pct','remark','mistakes','mins'];
 
 /* One tab per category. key = score column in the row, max = its max column.
@@ -76,8 +80,14 @@ function doPost(e) {
       writeCategories(d.row);                   // also copy into Pre-test / Unit tabs
       return out({ ok: true });
     }
-    if (d.pin !== TRAINER_PIN) return out({ ok: false, error: 'Wrong PIN' });
+    if (String(d.pin) !== getPin()) return out({ ok: false, error: 'Wrong PIN' });
     if (a === 'check') return out({ ok: true });
+    if (a === 'changePin') {
+      const n = String(d.newPin || '');
+      if (n.length < 4 || n.length > 20) return out({ ok: false, error: 'The PIN must be 4 to 20 characters' });
+      PropertiesService.getScriptProperties().setProperty('TRAINER_PIN', n);
+      return out({ ok: true });
+    }
     if (a === 'saveConfig') { tab('Config').getRange('A1').setValue(JSON.stringify(d.config)); return out({ ok: true }); }
     if (a === 'results') {
       const sh = tab('Results'), n = sh.getLastRow() - 1;

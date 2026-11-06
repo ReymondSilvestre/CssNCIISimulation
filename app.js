@@ -516,7 +516,7 @@ let QS=[
 function show(h){ov.innerHTML='<div class="card">'+h+'</div>';ov.style.display='flex'}
 function regForm(){
   const today=new Date().toISOString().slice(0,10);
-  show(`${hdr()}<h2>Student information</h2><label>Full name<input id="fn" autocomplete="name"></label><label>Age<input id="fa" type="number" min="5" max="99"></label><label>Date<input id="fd" type="date" value="${today}"></label><button id="go">Continue to pre-test</button><button id="tbtn" class="opt">Trainer settings</button><p class="err" id="er"></p>`);
+  show(`${hdr()}<h2>Student information</h2><label>Full name<input id="fn" autocomplete="name"></label><label>Age<input id="fa" type="number" min="5" max="99"></label><label>Date<input id="fd" type="date" value="${today}"></label><button id="go">Continue to pre-test</button><p class="err" id="er"></p>`);
   $('go').onclick=()=>{
     const n=$('fn').value.trim(),a=parseInt($('fa').value,10),d=$('fd').value;
     if(n.length<2)return $('er').textContent='Enter your full name.';

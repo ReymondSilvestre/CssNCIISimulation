@@ -21,7 +21,7 @@ If you change `Code.gs` later, use Deploy > Manage deployments > Edit > New vers
 
 ## Trainer settings
 Press Trainer settings (registration screen or side menu). Default offline PIN is `1234` (`DEFAULT_PIN` in `config.js`).
-When online, the PIN is checked by `TRAINER_PIN` in `Code.gs`.
+When online, the PIN is checked by the Google Sheet. `TRAINER_PIN` in `Code.gs` is the first PIN; after the trainer changes it in Trainer settings > PIN, the new PIN is stored in Script properties. Forgot it? Run `resetPin` in the Apps Script editor.
 Tabs: Details (lab title, trainer name, passing mark), Questions (pre-test), Results (table and CSV download).
 
 ## Offline after uploading to GitHub Pages or Vercel
@@ -33,9 +33,12 @@ On phones and Chrome/Edge you can also choose Install app / Add to Home screen.
 - Offline results stay in memory and are lost on reload. Download the CSV before closing.
 
 ## Side menu
-The side menu has two divisions: **1 Lab menu** (student, units, finish, trainer settings) and **2 Work station** (modes, ESD strap, auto build, quiz, power, parts list). Click a division title to fold it. The round arrow button at the top hides the whole menu; press **Menu** to bring it back.
+The side menu has two divisions: **1 Lab menu** (student, units, finish) and **2 Work station** (modes, ESD strap, auto build, quiz, power, parts list). Click a division title to fold it. The round arrow button at the top hides the whole menu; press **Menu** to bring it back.
 
 ## Editing questions and activities (Trainer settings)
 Tabs: Details, Pre-test, Units 2-4, Results.
 In **Units 2-4** the trainer can edit, add and delete questions and steps for the multiple-choice, ordering and select-all activities, and add new activities. The three interactive simulations (network devices, IP settings, folder permissions) and the RJ45 wire order can be renamed but their content is fixed. Unit 1 is the hands-on work station.
-Changes save into the `Config` tab of the Google Sheet (limit about 45,000 characters) and students get them on their next page load. After uploading these files, `VERSION` in `sw.js` is already bumped to `css-lab-v4`.
+Changes save into the `Config` tab of the Google Sheet (limit about 45,000 characters) and students get them on their next page load. After uploading these files, `VERSION` in `sw.js` is already bumped to `css-lab-v6`.
+
+## Trainer settings
+There is no Trainer settings button for students. The trainer opens it with the small **person icon** next to the **Rear view** button (top right), then enters the PIN.
