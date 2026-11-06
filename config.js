@@ -2,12 +2,12 @@
 window.APP_CONFIG = {
   /* Paste your Google Apps Script Web app URL here (ends with /exec).
      Leave it empty to run offline: data stays in memory and is lost on reload. */
-  SHEET_URL: '',
+  SHEET_URL: 'https://script.google.com/macros/s/AKfycbxFzBv_Vc3w8MHIVX4UckfD13Ycn96sqhrC_eFG4DzbupRpkFbRflEtvOw7ToV05hoh/exec',
   /* Trainer PIN used when the Google Sheet cannot be reached (offline).
      The PIN that protects the Google Sheet itself is TRAINER_PIN in Code.gs. */
   DEFAULT_PIN: '1234'
 };
-
+ 
 /* Default details. The trainer can change these in Trainer settings. */
 const CFG = {
   title: 'Computer Unit Lab',
@@ -19,3 +19,4 @@ const CFG = {
   questions: null
 };
 const PASS = () => CFG.pass / 100;
+ 
